@@ -512,6 +512,9 @@ md"""
 # * Coordinate 3: $[2, -5, 11]$ and $[2, -5, 9]$
 # """
 
+# ╔═╡ e0ccd05a-c730-443d-b3d7-7c38b5c38a90
+
+
 # ╔═╡ db8209b7-8fa6-4bb4-bfe3-680aa92e14d1
 md"""
 **Q:Hooke-Jeeves evaluates each of these points, and finds they have utilities** 
@@ -608,6 +611,9 @@ md"""
 # There is a similar story for the magnitude for the random perturbations. Adding random noise helps explore the policy space, but can also slow down convergence.
 # """
 
+# ╔═╡ 3aead6fc-4b6a-482a-bb37-7abe4b306c70
+
+
 # ╔═╡ cb0fbc5f-3e50-45fc-b821-f27fa999bfa4
 md"""
 **Q: Is a genetic algorithm guaranteed to converge to the optimal policy?**
@@ -617,6 +623,9 @@ md"""
 # md"""
 # **A:** No, it is not guaranteed to converge to optimal policy. The addition of random perturbations in the policy parameters means we may never converge to an optimum.
 # """
+
+# ╔═╡ 07eb9cb6-83ac-41f3-96da-9ca97441eb90
+
 
 # ╔═╡ 3c633af9-a03f-4a8e-97e6-fddc39379b45
 md"""
@@ -751,13 +760,16 @@ $\hat{\sigma}^2 = \frac{\sum_i (o_i - \hat{\mu})^2}{m}$
 # """
 
 # ╔═╡ 1160e802-aaa3-46c9-9bfa-8c9eca34c9f4
-md"""
-A: We use a maximum likelihood estimate to update the paramters. For a Gaussian distribution and samples $o_1$
+# md"""
+# A: We use a maximum likelihood estimate to update the paramters. For a Gaussian distribution and samples $o_1$
 
-The new **mean** is (1+4+2.5+10)/4= $((1+4+2.5+10)/4)
+# The new **mean** is (1+4+2.5+10)/4= $((1+4+2.5+10)/4)
 
-The new **variance** is ((1-4.375)^2 + (4-4.375)^2 + (2.5-4.375)^2 + (10-4.375)^2)/4 = $(((1-4.375)^2 + (4-4.375)^2 + (2.5-4.375)^2 + (10-4.375)^2)/4)
-"""
+# The new **variance** is ((1-4.375)^2 + (4-4.375)^2 + (2.5-4.375)^2 + (10-4.375)^2)/4 = $(((1-4.375)^2 + (4-4.375)^2 + (2.5-4.375)^2 + (10-4.375)^2)/4)
+# """
+
+# ╔═╡ 133e8543-b099-447d-b1bb-4356f4eb7809
+
 
 # ╔═╡ ad95db56-6c0e-4415-8382-afc80b183223
 md"""
@@ -788,6 +800,9 @@ md"""
 # A:
 # """
 
+# ╔═╡ 13acb582-9eac-4c20-bd0e-457fa0340500
+
+
 # ╔═╡ f706733d-2460-41a6-a45f-c07d5b4b537a
 md"""
 **Q: Suppose that we want to perform policy optimization on a problem where we know that policies far apart in parameter space can have similar high utility. What are the advantages of genetic algorithms over hooke-jeeves? What about the Cross Entropy method?**
@@ -797,6 +812,9 @@ md"""
 # md"""
 # A:
 # """
+
+# ╔═╡ f845c0ef-7710-4341-b298-1d04892032f5
+
 
 # ╔═╡ 120af26f-23dc-43ed-8f1c-3600c7bc2878
 md"""
@@ -2763,8 +2781,9 @@ version = "1.4.1+0"
 # ╟─55d06d06-2411-438c-b5af-001f2a57d795
 # ╟─08df5639-7366-442b-a14e-03337663e1d7
 # ╟─f368e79e-7430-432e-a230-e94e6bece935
-# ╠═ed482d6b-6779-4a57-aa57-e5e98ded2b5d
+# ╟─ed482d6b-6779-4a57-aa57-e5e98ded2b5d
 # ╟─312b4218-731e-4005-807a-9c78e675cfe2
+# ╟─e0ccd05a-c730-443d-b3d7-7c38b5c38a90
 # ╟─db8209b7-8fa6-4bb4-bfe3-680aa92e14d1
 # ╟─c7850642-77aa-42c3-9bf9-dde155050baf
 # ╟─d1b35fc9-93a8-4f9e-8605-78907c87b973
@@ -2784,8 +2803,10 @@ version = "1.4.1+0"
 # ╟─f4626fb9-9e7a-43ae-819b-2e78cfd2371e
 # ╟─fb8552f4-39a6-4bdc-ab41-47047eb6563a
 # ╟─083af011-1f87-4370-b059-74411984247a
+# ╟─3aead6fc-4b6a-482a-bb37-7abe4b306c70
 # ╟─cb0fbc5f-3e50-45fc-b821-f27fa999bfa4
 # ╟─c0a9dedc-aa3f-4315-ac4d-cdf6203d8be5
+# ╟─07eb9cb6-83ac-41f3-96da-9ca97441eb90
 # ╟─3c633af9-a03f-4a8e-97e6-fddc39379b45
 # ╠═bcb12c46-798e-4c7e-98e6-d17c39973a0d
 # ╠═aa837034-8705-4407-8233-32bf39b78ed6
@@ -2802,13 +2823,16 @@ version = "1.4.1+0"
 # ╟─db4b3c21-60ac-43f5-aa77-f6f0654dbc41
 # ╟─1afa7067-dda8-4509-a5ee-d219e46796bd
 # ╟─1160e802-aaa3-46c9-9bfa-8c9eca34c9f4
+# ╟─133e8543-b099-447d-b1bb-4356f4eb7809
 # ╟─ad95db56-6c0e-4415-8382-afc80b183223
 # ╠═5a8975d6-78c2-4392-8a15-6ffc0cb49bf0
 # ╟─390d4ef0-e85f-4184-a3cb-64733f97d176
 # ╟─be6270b4-930a-4f8e-b7f1-e0a253a0ae9f
 # ╟─26e2c454-4f07-4146-b5da-521d7ccd7c39
+# ╟─13acb582-9eac-4c20-bd0e-457fa0340500
 # ╟─f706733d-2460-41a6-a45f-c07d5b4b537a
 # ╟─5f9e1c12-fb9c-4b24-bf63-cb4250585814
+# ╟─f845c0ef-7710-4341-b298-1d04892032f5
 # ╟─120af26f-23dc-43ed-8f1c-3600c7bc2878
 # ╠═fdde7445-a477-46ea-a0c7-21e7f258858c
 # ╠═716832f9-1180-4fba-9e01-bda3057eb206
