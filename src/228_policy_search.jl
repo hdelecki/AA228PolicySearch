@@ -50,6 +50,8 @@ md"""
 # ╔═╡ a7fb576c-afc5-4be2-a5be-b722b312f6d0
 md"""
 So far, we've seen how exact solution methods can be used to solve for a policy in an offline method. We've also seen how online planning can handle large state spaces by reasoning over actions from an initial state. In this notebook, we'll discuss **policy search**, which involves searching over the space of policy parameters rather than actions. This idea will carry forward through the next few lectures.
+
+You can find this notebook in the github repo [here](https://github.com/hdelecki/AA228PolicySearch)
 """
 
 # ╔═╡ 18d9bf07-2a48-4bac-8a72-c46b5a0e7baf
@@ -79,6 +81,9 @@ md"""
 # * In value function based methods, we can use approximate value iteration.
 # * A common approach is to parameterize a policy. Then we can optimize over the policy parameters, which are usually much lower dimension than the action space.
 # """
+
+# ╔═╡ b92b5335-f7b4-4329-b7b9-8891b3a97581
+
 
 # ╔═╡ 76a5ba49-eff1-4aff-80eb-156963702404
 md"""
@@ -146,7 +151,7 @@ md"""
 md"""
 Great! Now let's look at how we can set define this MDP in code. We'll use the POMDPs.jl environment.
 
-First, we'll define a struct type. This is a 
+First, we'll define a struct type. This is a container for useful data about the pendulum.
 """
 
 # ╔═╡ 2d181244-cfe5-4158-880d-b920b14320db
@@ -266,7 +271,7 @@ function animate_pendulum(mdp, policy, fname)
 		s = sp
 	end
 	Images.save(fname, cat(imgs..., dims=3))
-end
+end;
 
 # ╔═╡ 74a1237d-0d70-4686-b0fd-d3b4e41be2d7
 md"""
@@ -323,11 +328,13 @@ The expected discounted return of a policy $\pi$ from initial state distribution
 
 $U(\pi) = \sum_s b(s) U^{\pi}(s)$
 
-When we have a large or continuous state space, we often cannot compute the utility of following a policy $U(\pi)$ exactly. Instead, we rewrite $U(\pi)$ in terms of trajectories of states, actions, and rewards under the policy $\pi$.  If $R(\tau)$ is the sum of discounted rewards for trajectory $\tau$,
+When we have a large or continuous state space, we often cannot compute the utility of following a policy $U(\pi)$ exactly. Instead, we rewrite $U(\pi)$ in terms of trajectories of states, actions, and rewards under the policy $\pi$.
 
-$U(\pi)= \int p_{\pi}(\tau)R(\tau)dt$
+The key idea is that we want to estimate utility based on *simulated trajectories*, $\tau$. We call the sum of rewards for trajectory $\tau$, $R(\tau)$ the *trajectory return*. Now, we can write the utility of following policy $\pi$ as:
 
-The expected value (or mean) total discounted reward can be _approximated_ by taking the mean total reward of many trajectories.
+$U(\pi)= \mathbb{E}[R(\tau)]$
+
+The expected value (or mean) return can be _approximated_ by taking the mean total reward of many trajectories:
 
 $U(\pi) \approx \frac{1}{m} \sum_{i=1}^m R(\tau^{(i)})$
 
@@ -476,7 +483,7 @@ Specify the attributes of our algorithm
 """
 
 # ╔═╡ 5a704698-8793-4fca-9f6e-8c01ef3b9b55
-hookejeeves = HookeJeevesPolicySearch(rand(2), 5.0, 0.5, 1e-1);
+hookejeeves = HookeJeevesPolicySearch(rand(2), 1.0, 0.5, 1e-1);
 
 # ╔═╡ c75f163b-190b-498e-8976-4fd1e0fdc8ea
 md"""
@@ -771,6 +778,21 @@ $\hat{\sigma}^2 = \frac{\sum_i (o_i - \hat{\mu})^2}{m}$
 # ╔═╡ 133e8543-b099-447d-b1bb-4356f4eb7809
 
 
+# ╔═╡ 3a05b2dc-5b9f-44de-bcae-5becb4a850c6
+
+
+# ╔═╡ 3618f22e-afe7-4f9d-9543-e5ca1e7c85fb
+
+
+# ╔═╡ a0422513-0a49-49ae-8474-e5815ffd2365
+
+
+# ╔═╡ 05808f2d-d126-42dc-9531-056cdb23dbd9
+
+
+# ╔═╡ be876433-b7c0-4ab2-9580-1b5420009c48
+
+
 # ╔═╡ ad95db56-6c0e-4415-8382-afc80b183223
 md"""
 ## Algorithm Comparison
@@ -803,6 +825,9 @@ md"""
 # ╔═╡ 13acb582-9eac-4c20-bd0e-457fa0340500
 
 
+# ╔═╡ 12e95134-d0f2-4199-b32b-9b16207bdc2d
+
+
 # ╔═╡ f706733d-2460-41a6-a45f-c07d5b4b537a
 md"""
 **Q: Suppose that we want to perform policy optimization on a problem where we know that policies far apart in parameter space can have similar high utility. What are the advantages of genetic algorithms over hooke-jeeves? What about the Cross Entropy method?**
@@ -814,6 +839,9 @@ md"""
 # """
 
 # ╔═╡ f845c0ef-7710-4341-b298-1d04892032f5
+
+
+# ╔═╡ 8e573e91-aa71-4b12-ba49-07005747a417
 
 
 # ╔═╡ 120af26f-23dc-43ed-8f1c-3600c7bc2878
@@ -2726,6 +2754,7 @@ version = "1.4.1+0"
 # ╟─0cd75ebe-a86a-471b-8b13-2180f0bd25fa
 # ╟─1fce7b86-8413-499d-ae3a-f2a95496a0e2
 # ╟─24a02196-09b0-4249-8a5b-42b3217e8ad9
+# ╟─b92b5335-f7b4-4329-b7b9-8891b3a97581
 # ╟─76a5ba49-eff1-4aff-80eb-156963702404
 # ╠═b2cf3f80-9e12-11ed-2cd7-fddcd14709e3
 # ╟─49198ec3-6f5f-43a9-af14-eaae60e81142
@@ -2747,7 +2776,7 @@ version = "1.4.1+0"
 # ╟─a2784cb8-c534-4c41-8254-342f5eb16b9f
 # ╟─831a51e7-cd0e-4216-87df-263cdf7acc24
 # ╟─5342b6a4-f8ba-46be-baaa-be2ef3b4b9ec
-# ╠═2b045ae4-1176-44db-be0b-042f788b8e2c
+# ╟─2b045ae4-1176-44db-be0b-042f788b8e2c
 # ╟─74a1237d-0d70-4686-b0fd-d3b4e41be2d7
 # ╟─cc29ce34-7719-404a-81c8-22af6e44b680
 # ╟─5650c7cd-a977-4d4d-b63e-ba8db23bcefc
@@ -2824,15 +2853,22 @@ version = "1.4.1+0"
 # ╟─1afa7067-dda8-4509-a5ee-d219e46796bd
 # ╟─1160e802-aaa3-46c9-9bfa-8c9eca34c9f4
 # ╟─133e8543-b099-447d-b1bb-4356f4eb7809
+# ╟─3a05b2dc-5b9f-44de-bcae-5becb4a850c6
+# ╟─3618f22e-afe7-4f9d-9543-e5ca1e7c85fb
+# ╟─a0422513-0a49-49ae-8474-e5815ffd2365
+# ╟─05808f2d-d126-42dc-9531-056cdb23dbd9
+# ╟─be876433-b7c0-4ab2-9580-1b5420009c48
 # ╟─ad95db56-6c0e-4415-8382-afc80b183223
 # ╠═5a8975d6-78c2-4392-8a15-6ffc0cb49bf0
 # ╟─390d4ef0-e85f-4184-a3cb-64733f97d176
 # ╟─be6270b4-930a-4f8e-b7f1-e0a253a0ae9f
 # ╟─26e2c454-4f07-4146-b5da-521d7ccd7c39
 # ╟─13acb582-9eac-4c20-bd0e-457fa0340500
+# ╟─12e95134-d0f2-4199-b32b-9b16207bdc2d
 # ╟─f706733d-2460-41a6-a45f-c07d5b4b537a
 # ╟─5f9e1c12-fb9c-4b24-bf63-cb4250585814
 # ╟─f845c0ef-7710-4341-b298-1d04892032f5
+# ╟─8e573e91-aa71-4b12-ba49-07005747a417
 # ╟─120af26f-23dc-43ed-8f1c-3600c7bc2878
 # ╠═fdde7445-a477-46ea-a0c7-21e7f258858c
 # ╠═716832f9-1180-4fba-9e01-bda3057eb206
